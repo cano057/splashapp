@@ -30,7 +30,7 @@ public class CartActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listViewProducts = (ListView) findViewById(R.id.products_list);
+        listViewProducts = (ListView) findViewById(R.id.list_products);
 
         continueShoppingButton = (Button) findViewById(R.id.continue_button);
         continueShoppingButton.setOnClickListener(new View.OnClickListener() {

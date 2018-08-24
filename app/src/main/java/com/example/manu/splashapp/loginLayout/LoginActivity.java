@@ -54,6 +54,7 @@ import com.example.manu.splashapp.mainLayout.MainActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static com.Connection.ReUsableClass.getMethod;
 
 /**
  * A login screen that offers login via email/password.
@@ -344,7 +345,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mEmail;
         private final String mPassword;
-        private String result;
+        private String result ="200";
         private JwtUser user;
 
         UserLoginTask(String email, String password) {
@@ -366,7 +367,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     }
                 }
             }
-            result = sendJSONServer(user);
+            //result = sendJSONServer(user);
 
             return result;
         }
@@ -377,7 +378,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
             DUMMY_CREDENTIALS.add(mEmail.concat(":".concat(mPassword)));
             if (!success.isEmpty()) {
+                String[] parts = success.split("token\":\"");
+                if(parts.length > 1) {
+                    String[] token = parts[1].split("\",");
+                    ClientClass.setToken(token[0]);
+                }
                 DUMMY_CREDENTIALS.add(mEmail.concat(":".concat(mPassword)));
+                Log.i("token", success);
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();

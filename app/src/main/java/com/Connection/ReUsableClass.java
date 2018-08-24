@@ -102,8 +102,6 @@ public class ReUsableClass {
 
         String token;
 
-        String para = "{email:mausam495@gmail.com,password:mausam123}";
-
         HttpURLConnection urlConnection = null;
 
         try {
@@ -128,7 +126,7 @@ public class ReUsableClass {
 
             DataOutputStream dStream = new DataOutputStream(urlConnection.getOutputStream());
 
-            dStream.writeBytes(para);
+            dStream.writeBytes(postParameters);
 
             dStream.flush();
 
@@ -212,12 +210,10 @@ public class ReUsableClass {
                 data = reader.read();
 
             }
-
-            return result;
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.i("cat", result);
         return result;
     }
 
